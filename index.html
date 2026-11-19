@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Écran Libre — Films complets en VF</title>
+<meta name="description" content="Écran Libre rassemble des films complets en version française, publiés en accès libre sur YouTube par leurs ayants droit.">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root {
+    --fond: #ffffff; --texte: #1d1d1f; --doux: #5f6368; --trait: #e3e3e6;
+    --accent: #b85c00; --carte: #f6f6f7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fond: #0e1117; --texte: #e8e8ea; --doux: #a0a4ab; --trait: #2a2f38;
+      --accent: #ffb347; --carte: #171b23;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--fond); color: var(--texte);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 20px 64px; }
+  .entete { display: flex; align-items: center; gap: 18px; margin-bottom: 8px; }
+  .entete img { width: 88px; height: 88px; border-radius: 20px; flex: none; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0; }
+  .accroche { font-size: 1.15rem; color: var(--doux); margin: 4px 0 0; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; padding-top: 16px; border-top: 1px solid var(--trait); }
+  a { color: var(--accent); }
+  ul { padding-left: 1.2em; }
+  li { margin: 6px 0; }
+  .statut {
+    margin: 28px 0 0; padding: 14px 18px; border-radius: 12px;
+    background: var(--carte); border: 1px solid var(--trait);
+  }
+  footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--trait); color: var(--doux); font-size: 0.9rem; }
+  footer a { margin-right: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="entete">
+    <img src="logo.png" alt="Logo Écran Libre">
+    <div>
+      <h1>Écran Libre</h1>
+      <p class="accroche">Des films complets en version française, gratuits et légaux.</p>
+    </div>
+  </div>
+
+  <p class="statut">📱 Application Android, bientôt disponible sur Google Play.</p>
+
+  <h2>Le principe</h2>
+  <p>Écran Libre rassemble des films complets en version française que leurs ayants droit publient eux-mêmes, en accès libre, sur leurs chaînes YouTube officielles. L'appli les classe par genre et les lit avec le lecteur officiel de YouTube.</p>
+  <ul>
+    <li>Gratuit, financé par la publicité.</li>
+    <li>Aucun compte à créer.</li>
+    <li>Aucun film n'est hébergé ni copié par Écran Libre.</li>
+  </ul>
+
+  <h2>Dans l'appli</h2>
+  <ul>
+    <li>Un catalogue classé par genre, mis à jour régulièrement.</li>
+    <li>Une fiche pour chaque film, avec sa bande-annonce quand elle existe.</li>
+    <li>Les favoris, « Reprendre » là où vous vous êtes arrêté et « Déjà vu ».</li>
+    <li>Une notification quand de nouveaux films arrivent, si vous le souhaitez.</li>
+    <li>Le bouton « YouTube / TV » pour continuer un film sur la télévision.</li>
+  </ul>
+
+  <h2>Ayants droit</h2>
+  <p>Vous êtes titulaire des droits d'un film proposé et souhaitez qu'il ne le soit plus ? Écrivez à <a href="mailto:ecran.libre.contact@gmail.com">ecran.libre.contact@gmail.com</a> avec le titre et le lien de la vidéo. Le film est retiré du catalogue dans les meilleurs délais.</p>
+
+  <h2>Contact</h2>
+  <p>Une question, un film qui ne fonctionne plus, une idée ? <a href="mailto:ecran.libre.contact@gmail.com">ecran.libre.contact@gmail.com</a></p>
+
+  <footer>
+    <a href="confidentialite.html">Politique de confidentialité</a>
+    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="mailto:ecran.libre.contact@gmail.com">Contact</a>
+  </footer>
+</main>
+</body>
+</html>
