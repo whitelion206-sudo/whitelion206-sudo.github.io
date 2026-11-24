@@ -3,82 +3,176 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Écran Libre — Films complets en VF</title>
-<meta name="description" content="Écran Libre rassemble des films complets en version française, publiés en accès libre sur YouTube par leurs ayants droit.">
+<title>Écran Libre — Des milliers de films complets en VF, gratuits et légaux</title>
+<meta name="description" content="Écran Libre rassemble des milliers de films complets et des documentaires en version française, publiés gratuitement par leurs ayants droit sur leurs chaînes YouTube officielles. Gratuit, légal, sans inscription.">
+<meta property="og:title" content="Écran Libre — Films complets en VF, gratuits et légaux">
+<meta property="og:description" content="Des milliers de films complets et des documentaires en VF, publiés par leurs ayants droit. Gratuit, légal, sans inscription.">
+<meta property="og:image" content="https://whitelion206-sudo.github.io/img/1_accueil.jpg">
+<meta name="theme-color" content="#0B0D12">
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
+  @font-face { font-family: "Inter"; src: url("fonts/inter-400.woff") format("woff"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Inter"; src: url("fonts/inter-600.woff") format("woff"); font-weight: 600; font-display: swap; }
+  @font-face { font-family: "Inter Display"; src: url("fonts/inter-display-800.woff") format("woff"); font-weight: 800; font-display: swap; }
   :root {
-    --fond: #ffffff; --texte: #1d1d1f; --doux: #5f6368; --trait: #e3e3e6;
-    --accent: #b85c00; --carte: #f6f6f7;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --fond: #0e1117; --texte: #e8e8ea; --doux: #a0a4ab; --trait: #2a2f38;
-      --accent: #ffb347; --carte: #171b23;
-    }
+    --fond: #0B0D12; --carte: #171C26; --carte2: #131720; --trait: #2B3242;
+    --texte: #F3F4F6; --doux: #A6AEBC; --ambre: #FFB547; --sombre: #1D1300;
   }
   * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--fond); color: var(--texte);
-    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  html { scroll-behavior: smooth; }
+  body { margin: 0; overflow-x: hidden; background: var(--fond); color: var(--texte);
+         font: 400 17px/1.6 "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  a { color: var(--ambre); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .cont { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  h1, h2 { font-family: "Inter Display", "Inter", system-ui, sans-serif; font-weight: 800; letter-spacing: -.5px; }
+  h1 { font-size: clamp(2.3rem, 5vw, 3.7rem); line-height: 1.05; margin: 0; }
+  h1 b, h2 b { color: var(--ambre); }
+  h2 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); line-height: 1.15; margin: 0 0 12px; }
+  .intro { color: var(--doux); font-size: 1.1rem; max-width: 620px; margin: 0 0 40px; }
+
+  /* barre du haut */
+  .barre { position: sticky; top: 0; z-index: 10; background: rgba(11,13,18,.82);
+           backdrop-filter: blur(10px); border-bottom: 1px solid rgba(43,50,66,.6); }
+  .barre .cont { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .marque { display: flex; align-items: center; gap: 12px; color: var(--texte); font-weight: 600; font-size: 1.15rem; }
+  .marque img { width: 34px; height: 34px; }
+  .menu { display: flex; gap: 28px; font-size: .95rem; }
+  .menu a { color: var(--doux); }
+  .menu a:hover { color: var(--texte); text-decoration: none; }
+
+  /* haut de page */
+  .hero { position: relative; overflow-x: clip; }
+  .hero::before { content: ""; position: absolute; right: -180px; top: -120px; width: 900px; height: 900px;
+                  background: radial-gradient(closest-side, rgba(255,181,71,.30), rgba(255,140,40,.10) 55%, rgba(255,181,71,0)); }
+  .hero .cont { position: relative; display: grid; grid-template-columns: 1.3fr .7fr; align-items: center;
+                gap: 24px; padding-top: 56px; padding-bottom: 24px; min-height: 640px; }
+  .hero p.sous { color: #C9CED8; font-size: 1.2rem; margin: 22px 0 32px; max-width: 520px; }
+  .boutons { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 26px; border-radius: 27px;
+         font-weight: 600; font-size: 1rem; }
+  .btn.plein { background: var(--ambre); color: var(--sombre); }
+  .btn.plein small { display: block; font-size: .72rem; font-weight: 600; opacity: .75; line-height: 1; }
+  .btn.plein span { line-height: 1.15; }
+  .btn.contour { border: 1.5px solid var(--trait); color: var(--texte); }
+  .btn:hover { text-decoration: none; filter: brightness(1.06); }
+  .pastilles { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 34px; color: var(--doux); font-size: .95rem; }
+  .pastilles span::before { content: "✓"; color: var(--ambre); font-weight: 600; margin-right: 8px; }
+  .hero .tel { justify-self: center; width: min(420px, 100%); filter: drop-shadow(0 30px 60px rgba(0,0,0,.5)); }
+
+  section { padding: 88px 0 0; }
+  .grille3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .carte { background: var(--carte); border: 1px solid var(--trait); border-radius: 20px; padding: 28px; }
+  .carte .ic { width: 48px; height: 48px; border-radius: 14px; background: rgba(255,181,71,.12); color: var(--ambre);
+               display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+  .carte h3 { margin: 0 0 8px; font-size: 1.2rem; }
+  .carte p { margin: 0; color: var(--doux); font-size: .98rem; }
+
+  /* aperçu */
+  .apercu { display: flex; gap: 18px; overflow-x: auto; padding: 4px 24px 24px; margin: 0 -24px;
+            scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: #2B3242 transparent; }
+  .apercu img { width: 200px; height: 356px; flex: none; border-radius: 18px; border: 1px solid var(--trait);
+                scroll-snap-align: start; box-shadow: 0 16px 40px rgba(0,0,0,.45); }
+
+  .fonctions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 20px; }
+  .fonctions div { display: flex; gap: 14px; align-items: flex-start; padding: 18px; border-radius: 16px;
+                   background: var(--carte2); border: 1px solid #1f2533; }
+  .fonctions svg { flex: none; color: var(--ambre); margin-top: 2px; }
+  .fonctions b { display: block; font-weight: 600; }
+  .fonctions span { color: var(--doux); font-size: .95rem; }
+
+  .encart { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .encart .carte p + p { margin-top: 12px; }
+
+  footer { margin-top: 96px; border-top: 1px solid var(--trait); padding: 28px 0 40px; color: var(--doux); font-size: .92rem; }
+  footer .cont { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
+
+  @media (max-width: 860px) {
+    .menu { display: none; }
+    .hero .cont { grid-template-columns: 1fr; padding-top: 36px; min-height: 0; text-align: left; }
+    .hero .tel { width: min(340px, 90%); margin-top: 12px; }
+    .grille3, .fonctions, .encart { grid-template-columns: 1fr; }
+    section { padding-top: 64px; }
+    .apercu img { width: 180px; height: 320px; }
   }
-  main { max-width: 760px; margin: 0 auto; padding: 40px 20px 64px; }
-  .entete { display: flex; align-items: center; gap: 18px; margin-bottom: 8px; }
-  .entete img { width: 88px; height: 88px; border-radius: 20px; flex: none; }
-  h1 { font-size: 2rem; line-height: 1.2; margin: 0; }
-  .accroche { font-size: 1.15rem; color: var(--doux); margin: 4px 0 0; }
-  h2 { font-size: 1.25rem; margin: 40px 0 8px; padding-top: 16px; border-top: 1px solid var(--trait); }
-  a { color: var(--accent); }
-  ul { padding-left: 1.2em; }
-  li { margin: 6px 0; }
-  .statut {
-    margin: 28px 0 0; padding: 14px 18px; border-radius: 12px;
-    background: var(--carte); border: 1px solid var(--trait);
-  }
-  footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--trait); color: var(--doux); font-size: 0.9rem; }
-  footer a { margin-right: 14px; }
 </style>
 </head>
 <body>
-<main>
-  <div class="entete">
-    <img src="logo.png" alt="Logo Écran Libre">
-    <div>
-      <h1>Écran Libre</h1>
-      <p class="accroche">Des films complets en version française, gratuits et légaux.</p>
+
+<header class="barre"><div class="cont">
+  <a class="marque" href="#"><img src="img/logo_ambre.png" alt="">Écran Libre</a>
+  <nav class="menu"><a href="#principe">Le principe</a><a href="#apercu">Aperçu</a><a href="#fonctions">Fonctions</a><a href="#ayants-droit">Ayants droit</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<div class="hero"><div class="cont">
+  <div>
+    <h1>Des milliers de films<br><b>complets en VF</b></h1>
+    <p class="sous">Écran Libre rassemble les films et documentaires que leurs ayants droit publient gratuitement sur leurs chaînes YouTube officielles, classés et prêts à regarder.</p>
+    <div class="boutons">
+      <a class="btn plein" href="#contact"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 18H7V5h10v14z"/></svg><span><small>Application Android</small>Bientôt sur Google Play</span></a>
+      <a class="btn contour" href="#principe">Comment ça marche ?</a>
     </div>
+    <div class="pastilles"><span>Gratuit</span><span>100 % légal</span><span>Sans inscription</span></div>
   </div>
+  <img class="tel" src="img/telephone.webp" alt="L'écran d'accueil d'Écran Libre, avec les tendances de la semaine et les nouveautés">
+</div></div>
 
-  <p class="statut">📱 Application Android, bientôt disponible sur Google Play.</p>
-
+<section id="principe"><div class="cont">
   <h2>Le principe</h2>
-  <p>Écran Libre rassemble des films complets en version française que leurs ayants droit publient eux-mêmes, en accès libre, sur leurs chaînes YouTube officielles. L'appli les classe par genre et les lit avec le lecteur officiel de YouTube.</p>
-  <ul>
-    <li>Gratuit, financé par la publicité.</li>
-    <li>Aucun compte à créer.</li>
-    <li>Aucun film n'est hébergé ni copié par Écran Libre.</li>
-  </ul>
+  <p class="intro">Aucun film n'est hébergé ni copié par Écran Libre. L'appli trouve les films complets publiés en accès libre par leurs ayants droit, et les lit avec le lecteur officiel de YouTube.</p>
+  <div class="grille3">
+    <div class="carte"><div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></div>
+      <h3>Des films complets en VF</h3><p>Action, comédie, horreur, famille… des milliers de longs-métrages en version française, et des documentaires, classés par genre et mis à jour toutes les deux heures.</p></div>
+    <div class="carte"><div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+      <h3>100 % légal</h3><p>Chaque film vient de la chaîne YouTube officielle de son ayant droit. Rien n'est piraté, rien n'est bloqué : les publicités YouTube restent en place.</p></div>
+    <div class="carte"><div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+      <h3>Gratuit, sans compte</h3><p>Pas d'abonnement ni d'inscription. Écran Libre est financé par la publicité, et vos favoris restent sur votre téléphone.</p></div>
+  </div>
+</div></section>
 
-  <h2>Dans l'appli</h2>
-  <ul>
-    <li>Un catalogue classé par genre, mis à jour régulièrement.</li>
-    <li>Une fiche pour chaque film, avec sa bande-annonce quand elle existe.</li>
-    <li>Les favoris, « Reprendre » là où vous vous êtes arrêté et « Déjà vu ».</li>
-    <li>Une notification quand de nouveaux films arrivent, si vous le souhaitez.</li>
-    <li>Le bouton « YouTube / TV » pour continuer un film sur la télévision.</li>
-  </ul>
+<section id="apercu"><div class="cont">
+  <h2>Aperçu de l'appli</h2>
+  <p class="intro">Les films présentés sur ces images sont fictifs, pour illustrer l'appli.</p>
+  <div class="apercu">
+    <img src="img/1_accueil.jpg" alt="Accueil : des milliers de films complets en VF" loading="lazy">
+    <img src="img/2_tendances.jpg" alt="Les tendances de la semaine" loading="lazy">
+    <img src="img/3_catalogue.jpg" alt="Le catalogue avec l'épingle et le défilement rapide" loading="lazy">
+    <img src="img/4_fiche.jpg" alt="La fiche d'un film, avec sa durée et son année" loading="lazy">
+    <img src="img/5_documentaires.jpg" alt="Les documentaires et les lignes de genres" loading="lazy">
+    <img src="img/6_favoris.jpg" alt="Les favoris et les films déjà vus" loading="lazy">
+  </div>
+</div></section>
 
-  <h2>Ayants droit</h2>
-  <p>Vous êtes titulaire des droits d'un film proposé et souhaitez qu'il ne le soit plus ? Écrivez à <a href="mailto:ecran.libre.contact@gmail.com">ecran.libre.contact@gmail.com</a> avec le titre et le lien de la vidéo. Le film est retiré du catalogue dans les meilleurs délais.</p>
+<section id="fonctions"><div class="cont">
+  <h2>Tout pour bien choisir son film</h2>
+  <p class="intro">Une appli simple, pensée pour trouver vite un bon film et le regarder sans prise de tête.</p>
+  <div class="fonctions">
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z"/></svg><p style="margin:0"><b>Tendances de la semaine</b><span>Le top 20 des films qui cartonnent.</span></p></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><p style="margin:0"><b>L'épingle</b><span>Retrouvez votre place dans le catalogue.</span></p></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><p style="margin:0"><b>Recherche tolérante</b><span>Elle trouve le film même avec une faute.</span></p></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg><p style="margin:0"><b>Favoris et déjà vus</b><span>Gardez vos envies, rayez ce que vous avez vu.</span></p></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg><p style="margin:0"><b>Sur la télé</b><span>Le bouton « YouTube / TV » envoie le film sur l'écran du salon.</span></p></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg><p style="margin:0"><b>Nouveaux films</b><span>Une notification quand ils arrivent, si vous le voulez.</span></p></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg><p style="margin:0"><b>Documentaires</b><span>Nature, histoire, sciences… eux aussi en VF.</span></p></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><p style="margin:0"><b>Peu vus, très aimés</b><span>Des pépites que peu de gens ont encore découvertes.</span></p></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg><p style="margin:0"><b>Signaler un problème</b><span>Un film qui ne marche plus ? Prévenez-nous en un clic.</span></p></div>
+  </div>
+</div></section>
 
-  <h2>Contact</h2>
-  <p>Une question, un film qui ne fonctionne plus, une idée ? <a href="mailto:ecran.libre.contact@gmail.com">ecran.libre.contact@gmail.com</a></p>
+<section><div class="cont encart">
+  <div class="carte" id="ayants-droit"><h3>Ayants droit</h3>
+    <p>Vous êtes titulaire des droits d'un film proposé et souhaitez qu'il ne le soit plus ? Écrivez à <a href="mailto:ecran.libre.contact@gmail.com">ecran.libre.contact@gmail.com</a> avec le titre et le lien de la vidéo.</p>
+    <p>Le film est retiré du catalogue dans les meilleurs délais.</p></div>
+  <div class="carte" id="contact"><h3>Contact</h3>
+    <p>Une question, un film qui ne fonctionne plus, une idée ? Écrivez-nous à <a href="mailto:ecran.libre.contact@gmail.com">ecran.libre.contact@gmail.com</a>.</p>
+    <p>L'application Android arrive bientôt sur Google Play.</p></div>
+</div></section>
 
-  <footer>
-    <a href="confidentialite.html">Politique de confidentialité</a>
-    <a href="mentions-legales.html">Mentions légales</a>
-    <a href="mailto:ecran.libre.contact@gmail.com">Contact</a>
-  </footer>
-</main>
+<footer><div class="cont">
+  <span>© 2026 Écran Libre</span>
+  <nav><a href="confidentialite.html">Politique de confidentialité</a><a href="mentions-legales.html">Mentions légales</a><a href="mailto:ecran.libre.contact@gmail.com">Contact</a></nav>
+</div></footer>
+
 </body>
 </html>
